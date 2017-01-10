@@ -3,4 +3,4 @@ Simple website built in AngularJS1, not Angular 2. Will feature database interac
 
 It is really bare-bones right now. 
 
-Picture: http://imgur.com/a/pkWDr
+Picture: http://i.imgur.com/4NdbQIO.jpg
