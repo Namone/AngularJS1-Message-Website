@@ -1,4 +1,4 @@
-var appControllers = angular.module('appControllers', []);
+var appControllers = angular.module('appController', []);
 
 appControllers.controller('HeaderController', ['$scope', '$http', function($scope, $http) {
     $scope.navigation = [
@@ -41,10 +41,3 @@ appControllers.controller('HeaderController', ['$scope', '$http', function($scop
     }
 }]);
 
-appControllers.controller('MessageController', ['$scope', '$http', function($scope, $http) {
-
-}]);
-
-appControllers.controller('ContactController', ['$scope', '$http', function($scope, $http) {
-
-}]);

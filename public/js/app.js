@@ -1,6 +1,8 @@
 var app = angular.module('application', [
     'ngRoute',
-    'appControllers'
+    'appController',
+    'messageController',
+    'contactController'
     ]);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -26,3 +28,4 @@ app.config(['$routeProvider', function($routeProvider) {
             redirectTo: '/',
         });
 }]);
+
