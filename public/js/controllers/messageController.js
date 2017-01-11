@@ -20,8 +20,7 @@ messageControllers.controller('MessageController', ['$scope', '$http', function(
             data: jsonData,
             headers: { 'Content-Type': 'application/json' }
         })
-        .then(function successCallback(response) {
-            console.log(response);
+        .then(function successCallback() {
             var object = JSON.parse(jsonData);
             $scope.messages.push(object);
         })
@@ -37,7 +36,7 @@ messageControllers.controller('MessageController', ['$scope', '$http', function(
             var Messages = JSON.parse(json);
             $scope.messages = [];  
             if (Messages.length > 0) {
-                for (var i = 0; i <= Messages.length; i++) {
+                for (var i = 0; i < Messages.length; i++) {
                     console.log("Getting message number " + i);
                     var CONTENT = Messages[i].content;
                     var ID = Messages[i]._id;
@@ -50,14 +49,16 @@ messageControllers.controller('MessageController', ['$scope', '$http', function(
     $scope.onDelete = function(message) {
         var Message = JSON.stringify(message);
         console.log("Deleting following message: " + Message);
+
         $http({
             url: '/messages-delete',
             method: 'DELETE',
             data: Message, // send ID of item we want to delete from database
             headers: { 'Content-Type': 'application/json' } // tell the server what kinda of data this is...
         })
-
-        var object = JSON.parse(Message);
-        $scope.messages.splice(object, 1);
+        .then(function successCallback() {
+            var object = JSON.parse(Message);
+            $scope.messages.splice(object, 1);
+        });
     };
 }]);

@@ -46,11 +46,12 @@ app.post('/messages-post', function(req, res, next) {
                 eror: err
             });
         } 
-
+        console.log(success);
         return res.status(201).json({
             title: 'Saved message!',
             object: success
-        });        
+        });       
+ 
     });
 
     res.on('data', function() {}); // consume data

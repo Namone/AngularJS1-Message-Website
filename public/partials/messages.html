@@ -1,5 +1,5 @@
 <div class="message-input">
-    <form ng-submit="submitForm(message)" class="navbar-form navbar-left" role="search">
+    <form ng-submit="submitForm(message)" ng-model="messageForm" class="navbar-form navbar-left" role="search">
         <div class="form-group">
             <input type="text" class="form-control" required name="message" ng-model="message.content" placeholder="Enter Message">
         </div>
@@ -11,6 +11,5 @@
 <br />
 <div class="messages">
     <div class="panel panel-default" ng-repeat="message in messages">
-        <div class="panel-body">{{ message.content }}<span class="delete"><a ng-click="onDelete(message)">Delete</a></span></div>
-    </div>
+        <div class="panel-body">{{ message.content }}<span class="delete"><a ng-click="onDelete(message)">Delete</a></span>
 </div>
