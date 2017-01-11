@@ -15,12 +15,16 @@ messageControllers.controller('MessageController', ['$scope', '$http', function(
     $scope.postMessage = function(data) {
         var jsonData = JSON.stringify(data); // convert to JSON
         $http({
-            url: '/messages',
+            url: '/messages-post',
             method: 'POST',
             data: jsonData,
             headers: { 'Content-Type': 'application/json' }
         })
-        $scope.getMessages(); // update page with new messages
+        .then(function successCallback(response) {
+            console.log(response);
+            var object = JSON.parse(jsonData);
+            $scope.messages.push(object);
+        })
     };
 
     $scope.getMessages = function() {
@@ -32,10 +36,13 @@ messageControllers.controller('MessageController', ['$scope', '$http', function(
             var json = JSON.stringify(response.data.data);
             var Messages = JSON.parse(json);
             $scope.messages = [];  
-            for (var i = 0; i < Messages.length; i++) {
-                var CONTENT = Messages[i].content;
-                var ID = Messages[i]._id;
-                $scope.messages.push({ 'content': CONTENT, '_id': ID });
+            if (Messages.length > 0) {
+                for (var i = 0; i <= Messages.length; i++) {
+                    console.log("Getting message number " + i);
+                    var CONTENT = Messages[i].content;
+                    var ID = Messages[i]._id;
+                    $scope.messages.push({ 'content': CONTENT, '_id': ID });
+                }
             }
         });
     };
@@ -44,12 +51,13 @@ messageControllers.controller('MessageController', ['$scope', '$http', function(
         var Message = JSON.stringify(message);
         console.log("Deleting following message: " + Message);
         $http({
-            url: '/messages',
+            url: '/messages-delete',
             method: 'DELETE',
             data: Message, // send ID of item we want to delete from database
             headers: { 'Content-Type': 'application/json' } // tell the server what kinda of data this is...
         })
 
-        $scope.getMessages(); // update page with current message list
+        var object = JSON.parse(Message);
+        $scope.messages.splice(object, 1);
     };
 }]);

@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
 });
 
 // Post messages
-app.post('/messages', function(req, res, next) {
+app.post('/messages-post', function(req, res, next) {
 
     var message = new Message({
         content: req.body.content,
@@ -41,11 +41,19 @@ app.post('/messages', function(req, res, next) {
 
     message.save(function(err, success) {
         if (err) {
-            return console.log(err);
-        } else {
-            console.log("Message added!");
-        }
+            return res.status(500).json({
+                title: 'Error saving message',
+                eror: err
+            });
+        } 
+
+        return res.status(201).json({
+            title: 'Saved message!',
+            object: success
+        });        
     });
+
+    res.on('data', function() {}); // consume data
 });
 
 // Get messages
@@ -61,7 +69,7 @@ app.get('/messages', function(req, res, next) {
                 console.log(err);
             }
 
-            res.status(200).json({
+            return res.status(201).json({
                 title: 'Successfully retrieved messages!',
                 data: success, // pass data back
                 
@@ -69,21 +77,21 @@ app.get('/messages', function(req, res, next) {
         });
 });
 
-app.delete('/messages', function(req, res, next) {
+app.delete('/messages-delete', function(req, res, next) {
     id = req.body._id;
     //console.log("ID: " + req.body);
     Message.find({ _id: id })
         .remove(function(err, success) {
             if (err) {
                 return res.status(500).json({
-                    title: 'Error removing message!',
+                    title: 'Error deleting message!',
                     error: err
                 });
             }
 
-            res.status(200).json({
-                title: 'Successfully removed message!',
-                success: success
+            return res.status(201).json({
+                title: 'Message deleted!',
+                obj: success
             });
         });
 });

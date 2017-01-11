@@ -11,6 +11,6 @@
 <br />
 <div class="messages">
     <div class="panel panel-default" ng-repeat="message in messages">
-        <div class="panel-body">{{ message.content }} - <span class="delete"><a href="#" ng-click="onDelete(message)">Delete</a></span></div>
+        <div class="panel-body">{{ message.content }}<span class="delete"><a ng-click="onDelete(message)">Delete</a></span></div>
     </div>
 </div>

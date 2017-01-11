@@ -8,3 +8,5 @@ p { font-weight: normal; }
     color: white; width: 100%; text-align: center; min-height: 400px; }
 #body.col-md-12  { background: #eee; margin-top: 0px; border-top: 1px solid #acacac; }
 .navbar { margin-bottom: 0; }
+.panel-body { padding: 25px 0px; text-align: center; }
+.delete a { float: right; padding: 0 15px; cursor: pointer; }
