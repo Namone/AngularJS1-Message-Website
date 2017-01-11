@@ -5,8 +5,6 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var engines = require('consolidate');
 
-var appRoutes = require('./routes/app.routes');
-
 // Our models
 var Message = require('./models/message.model');
 
@@ -68,7 +66,25 @@ app.get('/messages', function(req, res, next) {
                 data: success, // pass data back
                 
             });
-            console.log("Retreived following messages: \n\n" + success);
+        });
+});
+
+app.delete('/messages', function(req, res, next) {
+    id = req.body._id;
+    //console.log("ID: " + req.body);
+    Message.find({ _id: id })
+        .remove(function(err, success) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'Error removing message!',
+                    error: err
+                });
+            }
+
+            res.status(200).json({
+                title: 'Successfully removed message!',
+                success: success
+            });
         });
 });
 

@@ -32,11 +32,24 @@ messageControllers.controller('MessageController', ['$scope', '$http', function(
             var json = JSON.stringify(response.data.data);
             var Messages = JSON.parse(json);
             $scope.messages = [];  
-            console.log(Messages[0].content);
             for (var i = 0; i < Messages.length; i++) {
                 var CONTENT = Messages[i].content;
-                $scope.messages.push({ 'content': CONTENT });
+                var ID = Messages[i]._id;
+                $scope.messages.push({ 'content': CONTENT, '_id': ID });
             }
         });
+    };
+
+    $scope.onDelete = function(message) {
+        var Message = JSON.stringify(message);
+        console.log("Deleting following message: " + Message);
+        $http({
+            url: '/messages',
+            method: 'DELETE',
+            data: Message, // send ID of item we want to delete from database
+            headers: { 'Content-Type': 'application/json' } // tell the server what kinda of data this is...
+        })
+
+        $scope.getMessages(); // update page with current message list
     };
 }]);
