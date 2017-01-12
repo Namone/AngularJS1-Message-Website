@@ -21,8 +21,7 @@ messageControllers.controller('MessageController', ['$scope', '$http', function(
             headers: { 'Content-Type': 'application/json' }
         })
         .then(function successCallback() {
-            var object = JSON.parse(jsonData);
-            $scope.messages.push(object);
+            $scope.getMessages(); // update
         })
     };
 
@@ -57,8 +56,7 @@ messageControllers.controller('MessageController', ['$scope', '$http', function(
             headers: { 'Content-Type': 'application/json' } // tell the server what kinda of data this is...
         })
         .then(function successCallback() {
-            var object = JSON.parse(Message);
-            $scope.messages.splice(object, 1);
+            $scope.getMessages(); // update
         });
     };
 }]);

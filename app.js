@@ -53,8 +53,6 @@ app.post('/messages-post', function(req, res, next) {
         });       
  
     });
-
-    res.on('data', function() {}); // consume data
 });
 
 // Get messages
@@ -80,6 +78,7 @@ app.get('/messages', function(req, res, next) {
 
 app.delete('/messages-delete', function(req, res, next) {
     id = req.body._id;
+    console.log('Deleting mesage with ID: ' + id);
     //console.log("ID: " + req.body);
     Message.find({ _id: id })
         .remove(function(err, success) {
@@ -89,7 +88,7 @@ app.delete('/messages-delete', function(req, res, next) {
                     error: err
                 });
             }
-
+            console.log("Deleted message: " + success);
             return res.status(201).json({
                 title: 'Message deleted!',
                 obj: success
