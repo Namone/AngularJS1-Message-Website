@@ -8,8 +8,8 @@ appControllers.controller('HeaderController', ['$scope', '$http', function($scop
             active: true,
         },
         {
-            name: 'About Us',
-            link: '#!/about',
+            name: 'My Account',
+            link: '#!/account/:userID',
             active: false
         },
         {

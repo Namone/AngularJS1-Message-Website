@@ -2,7 +2,8 @@ var app = angular.module('application', [
     'ngRoute',
     'appController',
     'messageController',
-    'contactController'
+    'userController',
+    'userFactory',
     ]);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -11,8 +12,9 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'partials/messages.html',
             controller: 'MessageController',
         })
-        .when('/about', {
-            templateUrl: 'partials/about.html',
+        .when('/account/:userID', {
+            templateUrl: 'partials/myaccount.html',
+            controller: 'UserController',
         })
         .when('/why', {
             templateUrl: 'partials/why.html',
@@ -22,7 +24,6 @@ app.config(['$routeProvider', function($routeProvider) {
         })
         .when('/contact', {
             templateUrl: 'partials/contact.html',
-            controller: 'ContactController',
         })
         .otherwise({ // handle 404s
             redirectTo: '/',
