@@ -33,7 +33,10 @@ app.use(function (req, res, next) {
 
 // Testing purposes
 app.get('/account/:id', function(req, res, next) {
-    return console.log('GOT IT - ' + req.params.id);
+    return res.status(201).json({
+        title: 'Success!',
+        id: req.params.id,
+    })
 });
 
 // Post messages
