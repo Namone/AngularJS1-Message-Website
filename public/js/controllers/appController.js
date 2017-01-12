@@ -9,7 +9,7 @@ appControllers.controller('HeaderController', ['$scope', '$http', function($scop
         },
         {
             name: 'My Account',
-            link: '#!/account/:userID',
+            link: '#!/account/',
             active: false
         },
         {

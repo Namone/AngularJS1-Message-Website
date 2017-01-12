@@ -12,7 +12,7 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'partials/messages.html',
             controller: 'MessageController',
         })
-        .when('/account/:userID', {
+        .when('/account/', {
             templateUrl: 'partials/myaccount.html',
             controller: 'UserController',
         })

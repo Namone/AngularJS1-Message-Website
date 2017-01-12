@@ -31,6 +31,11 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Testing purposes
+app.get('/account/:id', function(req, res, next) {
+    return console.log('GOT IT - ' + req.params.id);
+});
+
 // Post messages
 app.post('/messages-post', function(req, res, next) {
 
