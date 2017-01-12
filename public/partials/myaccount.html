@@ -1,7 +1,7 @@
-<h2>About Us</h2>
-
-<div ng-if="loggedIn" ng-model="LoggedIn">
-    <h2> Logged in! </h2>
+<div class="user-input">
+    <form ng-submit="onSubmit(username, password)" class="navbar-form navbar-left">
+        <input type="text" class="form-control username-input" placeholder="Username" ng-model="username">
+        <input type="text" class="form-control password-input" placeholder="Password" ng-model="password">
+        <button class="btn btn-default" type="submit">Create</button>
+    </form>
 </div>
-
-{{ test }}

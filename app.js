@@ -7,6 +7,7 @@ var engines = require('consolidate');
 
 // Our models
 var Message = require('./models/message.model');
+var User = require('./models/user.model');
 
 // Set up body parser
 app.use(bodyParser.json());
@@ -32,10 +33,25 @@ app.use(function (req, res, next) {
 });
 
 // Testing purposes
-app.get('/account/:id', function(req, res, next) {
-    return res.status(201).json({
-        title: 'Success!',
-        id: req.params.id,
+app.post('/account-create/', function(req, res, next) {
+    var user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        id: req.body.id
+    })
+
+    user.save(function(err, success) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred creating this user!',
+                error: err
+            });
+        } 
+        console.log("User created!");
+        res.status(201).json({
+            title: 'Successfully created user!',
+            obj: success
+        });
     })
 });
 

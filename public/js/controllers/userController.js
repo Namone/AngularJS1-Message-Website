@@ -1,11 +1,9 @@
-var userController = angular.module('userController', [
-    
-]);
+var userController = angular.module('userController', []);
 
-userController.controller('UserController', ['$scope', '$http', "$window", 'User', function($scope, $http, $window, User) {
-    var user = User.newUser('Namone', 'muggins1');
-    //alert(user.username + " | " + user.id);
-    $scope.loggedIn = false;
-
-    $window.location.assign('/account/' + user.id);
+userController.controller('UserController', ['$scope', 'User', function($scope, User) {
+   
+    $scope.onSubmit = function(username, password) {
+        var user = User.newUser(username, password); // create new User object
+        var response = User.createUser(user); // give it to the DB
+    }
 }]);
